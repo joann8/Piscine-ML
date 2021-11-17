@@ -14,3 +14,4 @@ print(simple_predict(x, theta3))
 
 theta4 = np.array([-3, 1])
 print(simple_predict(x, theta4))
+
