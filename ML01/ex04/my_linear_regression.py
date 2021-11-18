@@ -85,6 +85,20 @@ class MyLinearRegression():
             return np.sum(tmp)
         return None
 
+    def mse_elem(self, y, y_hat):
+        y = self.check_dim_vector(y)
+        y_hat= self.check_dim_vector(y_hat)
+        if y is not None and y_hat is not None and y.shape == y_hat.shape and y.shape[1] == 1:
+            return (y_hat - y) **2
+        return None
+
+    def mse_(self, y, y_hat):
+        y = self.check_dim_vector(y)
+        y_hat= self.check_dim_vector(y_hat)
+        if y is not None and y_hat is not None and y.shape == y_hat.shape and y.shape[1] == 1:
+            tmp = self.mse_elem(y, y_hat) * (1 / y.shape[0])
+            return np.sum(tmp)
+        return None
 
 
 
