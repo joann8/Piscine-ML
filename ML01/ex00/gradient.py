@@ -11,9 +11,8 @@ def check_theta(theta):
     if isinstance(theta,np.ndarray) and theta.shape[0] > 0:
         if np.ndim(theta) == 1:
             theta = np.reshape(theta, (theta.shape[0], 1))  
-        if theta.shape[1] != 1:
-            return None   
-        return theta
+        if theta.shape[0] == 2 and theta.shape[1] == 1:
+            return theta 
     return None
 
 def predict_(x, theta):
