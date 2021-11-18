@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 def check_dim_vector(vect):
     if isinstance(vect, np.ndarray):
@@ -24,8 +25,16 @@ def predict_(x, theta):
         X = np.concatenate((ones, x), axis=1)
         return np.matmul(X , theta)
     return None
-    
+
+# FONCTIONS
+
 def mse_elem(y, y_hat):
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        return (y_hat - y) **2
+    return None
+
 def mse_(y, y_hat):
     """
     Description:
@@ -39,8 +48,20 @@ def mse_(y, y_hat):
     Raises:
         This function should not raise any Exception.
     """
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        tmp = mse_elem(y, y_hat) * (1 / y.shape[0])
+        return np.sum(tmp)
+    return None
 
 def rmse_elem(y, y_hat):
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        return (y_hat - y) **2
+    return None
+
 def rmse_(y, y_hat):
     """
     Description:
@@ -54,8 +75,20 @@ def rmse_(y, y_hat):
     Raises:
         This function should not raise any Exception.
     """
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        tmp = mse_elem(y, y_hat) * (1 / y.shape[0])
+        return math.sqrt(np.sum(tmp))
+    return None
 
 def mae_elem(y, y_hat):
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        return abs(y_hat - y)
+    return None
+
 def mae_(y, y_hat):
     """
     Description:
@@ -69,8 +102,21 @@ def mae_(y, y_hat):
     Raises:
         This function should not raise any Exception.
     """
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        tmp = mae_elem(y, y_hat) * (1 / y.shape[0])
+        return np.sum(tmp)
+    return None
 
 def r2score_elem(y, y_hat):
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        return (y - y.mean()) ** 2
+    return None
+
+
 def r2score_(y, y_hat):
     """
     Description:
@@ -84,3 +130,12 @@ def r2score_(y, y_hat):
     Raises:
         This function should not raise any Exception.
     """
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        top = mse_elem(y, y_hat)
+        sum_top = np.sum(top)
+        bottom = r2score_elem(y, y_hat)
+        sum_bottom = np.sum(bottom)
+        return 1 - (sum_top / sum_bottom)
+    return None

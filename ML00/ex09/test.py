@@ -16,8 +16,8 @@ print(sqrt(mean_squared_error(x,y)))
 
 print("*********** MAE ***************")
 print(mae_(x,y))
-print(print(mean_absolute_error(x,y)))
+print(mean_absolute_error(x,y))
 
-print("*********** R2SCORE***************")
+print("********* R2SCORE *************")
 print(r2score_(x,y))
 print(r2_score(x,y))
