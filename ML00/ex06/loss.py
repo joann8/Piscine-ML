@@ -1,19 +1,22 @@
 import numpy as np
 
 def check_dim_vector(vect):
-    if np.ndim(vect) == 1:
-        vect = np.reshape(vect, (vect.shape[0], 1))
-        return vect
-    if np.ndim(vect) == 2:
+    if isinstance(vect, np.ndarray):
+        if np.ndim(vect) == 1:
+            vect = np.reshape(vect, (vect.shape[0], 1))       
         return vect
     return None
-    
+
+def check_theta(theta):
+    if isinstance(theta,np.ndarray) and theta.shape[0] > 0 and theta.shape[1] == 1:       
+        return 0
+    return 1
+
 def predict_(x, theta):
-    if isinstance(x,np.ndarray) and len(x) > 0 and \
-        isinstance(theta,np.ndarray) and len(theta) == 2:
+    x = check_dim_vector(x)
+    if x is not None and check_theta(theta) == 0:
         ones = np.ones((x.shape[0], 1)) #matrice remplie de 1, 1 seule colonne
-        X = np.reshape(x, (x.shape[0], 1))
-        X = np.concatenate((ones, X), axis=1)
+        X = np.concatenate((ones, x), axis=1)
         return np.matmul(X , theta)
     return None
 
@@ -31,35 +34,11 @@ def loss_elem_(y, y_hat):
     Raises:
         This function should not raise any Exception.
     """
-    if isinstance(y,np.ndarray) and isinstance(y_hat, np.ndarray):
-        print("y = " , y.shape)
-        print("y_hat = " , y_hat.shape)
-        y = check_dim_vector(y)
-        if y is not None:
-            print("new y = " , y.shape)
-        else:
-            return None
-    #     if y.shape[0] == 1 or y.shape[1] == 1:
-    #         if y.shape[0] > 1:
-    #             Y = np.reshape(y, (y.shape[0], 1))
-    #         else:
-    #             Y = y
-    #     else:
-    #         print("Y no a vector")
-        
-    #     if y_hat.shape[0] == 1 or y_hat.shape[1] == 1:
-    #         if y_hat.shape[0] > 1:
-    #             Y_hat= np.reshape(y_hat, (y_hat.shape[0], 1))
-    #         else:
-    #             Y_hat = y_hat
-    #     else:
-    #         print("Y_hat no a vector")
-    # else:
-    #     print("Wrongs Inputs Type")
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        return (y_hat - y) **2
     return None
-
-
-
 
 def loss_(y, y_hat):
     """
@@ -75,6 +54,11 @@ def loss_(y, y_hat):
     Raises:
         This function should not raise any Exception.
     """
-    if isinstance(y,np.ndarray) and isinstance(y_hat, np.ndarray):
-        pass
+    y = check_dim_vector(y)
+    y_hat= check_dim_vector(y_hat)
+    if y is not None and y_hat is not None and y.shape == y_hat.shape:
+        tmp = loss_elem_(y, y_hat) * (1 / (2 * y.shape[0]))
+        return np.sum(tmp)
+    return None
+
 
