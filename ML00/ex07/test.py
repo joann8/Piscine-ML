@@ -7,9 +7,9 @@ Y = np.array([2, 14, -13, 5, 12, 4, -19])
 print(loss_(X, Y))
 print(loss_(X, X))
 
+#Errors cases
 Z = np.empty((0,0))
 print(loss_(X, Z))
-
 Z = np.array([2, 14, -13, 5, 12, 4, -19, 20])
 print(loss_(X, Z))
 
