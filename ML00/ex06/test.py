@@ -26,3 +26,16 @@ y_hat3 = predict_(x3, theta3)
 y3 = np.array([2, 14, -13, 5, 12, 4, -19])
 print(loss_(y3, y_hat3))
 print(loss_(y3, y3))
+
+print("*********** TEST ERRORS ***************")
+#dimensions
+x4 = np.array([0, 15, -9, 7, 12, 3, -21, 20]) #+1
+theta4 = np.array([[0.], [1.]])
+y_hat4 = predict_(x4, theta4)
+y4 = np.array([2, 14, -13, 5, 12, 4, -19])
+print(loss_elem_(y4, y_hat4))
+print(loss_(y4, y_hat4))
+#empty
+x5 = np.empty((0,0))
+print(loss_elem_(x5, y_hat4))
+print(loss_(y4, x5))
