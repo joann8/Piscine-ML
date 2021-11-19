@@ -22,9 +22,13 @@ def loss_(y, y_hat):
     Raises:
         This function should not raise any Exception.
     """
-    y = check_dim_maxtrix(y)
-    y_hat= check_dim_maxtrix (y_hat)
-    if y is not None and y_hat is not None and y.shape == y_hat.shape:
-        tmp = ((y_hat - y) **2) * (1 / (2 * y.shape[0]))
-        return np.sum(tmp)
-    return None
+    try:
+        y = check_dim_maxtrix(y)
+        y_hat= check_dim_maxtrix (y_hat)
+        if y is not None and y_hat is not None and y.shape == y_hat.shape:
+            tmp = ((y_hat - y) **2) * (1 / (2 * y.shape[0]))
+            return np.sum(tmp)
+        return None
+    except Exception as err:
+        print(err)
+        return None
