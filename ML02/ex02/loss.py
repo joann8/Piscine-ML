@@ -24,10 +24,11 @@ def loss_(y, y_hat):
     """
     try:
         y = check_dim_matrix(y)
-        y_hat= check_dim_matrix (y_hat)
+        y_hat= check_dim_matrix(y_hat)
+        y = y.flatten()
+        y_hat = y_hat.flatten()
         if y is not None and y_hat is not None and y.shape == y_hat.shape:
-            tmp = ((y_hat - y) **2) * (1 / (2 * y.shape[0]))
-            return np.sum(tmp)
+            return float(np.dot(y_hat - y, y_hat - y) * (1 / (2 * y.shape[0])))
         return None
     except Exception as err:
         print(err)
