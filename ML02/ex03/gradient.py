@@ -1,6 +1,6 @@
 import numpy as np
 
-def check_dim_maxtrix(mat):
+def check_dim_matrix(mat):
     if isinstance(mat, np.ndarray):
         if np.ndim(mat) == 1:
             mat = np.reshape(mat, (mat.shape[0], 1))       
@@ -26,7 +26,7 @@ def gradient(x, y, theta):
     """Computes a gradient vector from three non-empty numpy.array, without any for-loop.
     The three arrays must have the compatible shapes.
     Args:
-        x: has to be an numpy.array, a matrix of shape m * n.
+        x: has to be an numpy.array, a matrix of shapse m * n.
         y: has to be an numpy.array, a vector of shape m * 1.
         theta: has to be an numpy.array, a vector (n +1) * 1.
     Return:
@@ -39,9 +39,9 @@ def gradient(x, y, theta):
         This function should not raise any Exception.
     """
     try:
-        x = check_dim_maxtrix(x)
-        y = check_dim_maxtrix(y)
-        if x is not None and y is not None and x.shape[0] == y.shape[0]:
+        x = check_dim_matrix(x)
+        y = check_dim_matrix(y)
+        if x is not None and y is not None and x.shape[0] == y.shape[0] and y.shape[1] == 1:
             theta = check_theta(theta, x.shape[1])
             if theta is not None:
                 X = add_intercept(x)

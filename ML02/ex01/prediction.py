@@ -1,6 +1,6 @@
 import numpy as np
 
-def check_dim_maxtrix(mat):
+def check_dim_matrix(mat):
     if isinstance(mat, np.ndarray):
         if np.ndim(mat) == 1:
             mat = np.reshape(mat, (mat.shape[0], 1))       
@@ -22,7 +22,7 @@ def add_intercept(x):
         return np.concatenate((ones, x), axis=1)    
     return None
 
-def simple_predict(x, theta):
+def predict_(x, theta):
     """Computes the prediction vector y_hat from two non-empty numpy.array.
     Args:
         x: has to be an numpy.array, a matrix of shape m * n.
@@ -36,7 +36,7 @@ def simple_predict(x, theta):
         This function should not raise any Exception.
     """
     try:
-        x = check_dim_maxtrix(x)
+        x = check_dim_matrix(x)
         if x is not None:
             theta = check_theta(theta, x.shape[1])   
             if theta is not None: 

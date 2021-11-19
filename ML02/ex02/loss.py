@@ -1,6 +1,6 @@
 import numpy as np
 
-def check_dim_maxtrix(mat):
+def check_dim_matrix(mat):
     if isinstance(mat, np.ndarray):
         if np.ndim(mat) == 1:
             mat = np.reshape(mat, (mat.shape[0], 1))       
@@ -23,8 +23,8 @@ def loss_(y, y_hat):
         This function should not raise any Exception.
     """
     try:
-        y = check_dim_maxtrix(y)
-        y_hat= check_dim_maxtrix (y_hat)
+        y = check_dim_matrix(y)
+        y_hat= check_dim_matrix (y_hat)
         if y is not None and y_hat is not None and y.shape == y_hat.shape:
             tmp = ((y_hat - y) **2) * (1 / (2 * y.shape[0]))
             return np.sum(tmp)
