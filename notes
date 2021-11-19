@@ -1,7 +1,13 @@
+global : try and catch
+
 ML00:
 - global : condition pour x 
 - ex00--> matrice a faire, assez long (cf vector PY01 ex02)
-- global : try and catch
 
 ML01:
+- format output gradient ex00 ex01
 - ex04 : grah gradient a faire
+
+ML02:
+- format output gradient ex03
+
