@@ -100,6 +100,9 @@ class MyLinearRegression():
             return np.sum(tmp)
         return None
 
+    
+    
+
 
 
 
